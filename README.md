@@ -4,7 +4,7 @@ Sistema web simples de gestão empresarial: reúne pedidos, clientes e negócios
 
 **Autor:** Gabriel Faria de Queiroz
 **Disciplina:** Análise e Projeto de Sistemas
-**Documentação completa:** `docs/Orbe_Documentacao.pdf`
+**Repositório:** https://github.com/fariag4/Orbe.git
 
 ## Funcionalidades
 
@@ -17,6 +17,12 @@ Sistema web simples de gestão empresarial: reúne pedidos, clientes e negócios
 
 O Orbe apenas registra notas já emitidas. Não emite NF-e nem NFS-e.
 
+## Tecnologias
+
+- HTML, CSS e JavaScript puro, em um único arquivo (sem frameworks e sem servidor)
+- Armazenamento no `localStorage` do navegador (chave `orbeData`)
+- Exportação em CSV (UTF-8 com BOM, separador `;`, para abrir corretamente no Excel) e backup em JSON
+
 ## Como executar
 
 Não precisa instalar nada. Baixe o repositório e abra o arquivo `orbe_gestao_empresarial.html` no navegador (Chrome, Firefox ou Edge).
@@ -27,16 +33,30 @@ cd Orbe
 # abra orbe_gestao_empresarial.html com um clique duplo
 ```
 
-Os dados ficam salvos no navegador e no dispositivo em que o arquivo foi aberto. Use o botão "Backup" para guardar uma cópia e transferi-la para outro computador.
+## Como usar
 
-## Estrutura
+| Módulo | Para que serve |
+| --- | --- |
+| Visão geral | Totais de pedidos e clientes, valor vendido, valor a receber e pedidos recentes |
+| Pedidos | Cadastro de pedidos com status (Pendente, Em andamento, Concluído, Cancelado) |
+| Clientes e negócios | Cadastro de clientes e empresas com contato, documento e endereço |
+| Notas fiscais | Lançamento de notas com vencimento, valor recebido e status (Pendente, Parcial, Pago) |
+| Financeiro | Total lançado, recebido, em aberto, vencido e contas a receber |
+| Segurança dos dados | Gerar backup, restaurar backup e limpar dados |
 
-```
-├── orbe_gestao_empresarial.html   sistema (interface + lógica)
-├── docs/
-│   └── Orbe_Documentacao.pdf      documentação de análise e projeto
-└── README.md
-```
+## Seus dados e o backup
+
+Os dados ficam salvos no navegador e no dispositivo em que o arquivo foi aberto, e não são enviados para nenhum servidor. Para não perdê-los (por exemplo, ao limpar os dados do navegador) ou para levá-los a outro computador, use **Gerar backup** e guarde o arquivo `.json`. Para recuperar, use **Restaurar backup**: isso substitui todos os dados atuais.
+
+## Limitações conhecidas
+
+- Não há login nem compartilhamento: cada navegador tem seus próprios dados.
+- O cliente de um pedido e o pedido de uma nota são ligados pelo nome e pelo número digitados, sem chave. Renomear um cliente não atualiza os pedidos dele.
+- Não há alerta de número de pedido ou de nota duplicado.
+
+## Documentação
+
+A documentação de análise e projeto (requisitos, casos de uso e diagrama de classes) está em `docs/Orbe_Documentacao.pdf`.
 
 ## Convenção de commits
 
