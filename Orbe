@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#172238">
+<title>Orbe | Gestão empresarial</title>
+<style>
+:root{--bg:#f5f7fb;--surface:#fff;--ink:#172238;--muted:#718096;--line:#e7ebf2;--primary:#4263eb;--primary-soft:#edf1ff;--green:#16865b;--green-soft:#e5f6ee;--amber:#a76508;--amber-soft:#fff4dc;--red:#c13b45;--red-soft:#ffeaec;--purple:#7654c8;--shadow:0 8px 28px rgba(24,34,53,.055)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}
+.app{display:flex;min-height:100vh}.sidebar{width:252px;background:#172238;color:#fff;padding:25px 16px;flex-shrink:0;display:flex;flex-direction:column}.brand{font-size:21px;font-weight:850;letter-spacing:-.6px;padding:0 12px 28px}.brand span{color:#91a7ff}.nav-label{font-size:10px;color:#91a0b7;text-transform:uppercase;letter-spacing:1.3px;padding:8px 12px}.nav button{display:flex;gap:12px;align-items:center;width:100%;border:0;background:transparent;color:#c9d2e1;padding:12px;border-radius:10px;text-align:left;margin:3px 0}.nav button.active,.nav button:hover{background:#293954;color:#fff}.nav .ico{width:20px;text-align:center;font-size:16px}.side-bottom{margin-top:auto;padding:18px 12px 4px;color:#91a0b7;font-size:11px;line-height:1.6}.side-bottom strong{color:#dce4f2;display:block;font-size:12px}
+main{flex:1;min-width:0;padding:28px 34px 55px;max-width:1600px;margin:auto;width:100%}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:25px}.eyebrow{color:var(--muted);font-size:11px;letter-spacing:1px;font-weight:750}.topbar h1{margin:5px 0 0;font-size:27px;letter-spacing:-.7px}.top-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.date-label{color:var(--muted);font-size:12px;margin-right:6px}
+.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 13px;border-radius:9px;font-weight:650;display:inline-flex;gap:7px;align-items:center;justify-content:center}.btn:hover{border-color:#c8d1e1;background:#fafbfe}.btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}.btn.danger{color:var(--red)}.btn.small{padding:6px 9px;font-size:12px}.btn:disabled{opacity:.45;cursor:not-allowed}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.stat,.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}.stat{padding:18px}.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;font-weight:650}.stat-icon{background:var(--primary-soft);color:var(--primary);border-radius:9px;padding:8px;font-size:15px}.stat strong{display:block;font-size:25px;letter-spacing:-.7px;margin:12px 0 3px}.stat small{color:var(--muted);font-size:11px}.panel{padding:19px;margin-bottom:17px}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.panel h2{font-size:16px;margin:0}.muted{color:var(--muted)}.subtext{color:var(--muted);font-size:12px;margin-top:4px}
+.grid-main{display:grid;grid-template-columns:1.5fr 1fr;gap:17px}.quick-list{display:grid;gap:0}.quick-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.quick-item:last-child{border:0}.quick-item strong{font-size:13px}.quick-item small{display:block;color:var(--muted);margin-top:4px}.right{text-align:right}.metric-line{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}.metric-line:last-child{border:0}.metric-line span{color:var(--muted)}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:13px}.toolbar input,.toolbar select,.field input,.field select,.field textarea{border:1px solid var(--line);border-radius:9px;padding:10px 11px;background:#fff;color:var(--ink);outline:none}.toolbar input:focus,.field input:focus,.field select:focus,.field textarea:focus{border-color:#9aabff;box-shadow:0 0 0 3px #4263eb18}.toolbar input{min-width:210px;flex:1}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{text-align:left;color:var(--muted);font-size:10px;font-weight:750;letter-spacing:.65px;padding:11px 10px;border-bottom:1px solid var(--line)}td{padding:13px 10px;border-bottom:1px solid var(--line);font-size:12px}tr:last-child td{border-bottom:0}tbody tr:hover{background:#fafbff}.status{display:inline-flex;border-radius:20px;padding:5px 8px;font-size:10px;font-weight:750}.s-pendente{background:var(--amber-soft);color:#94600a}.s-andamento{background:#e8efff;color:#3155c9}.s-concluido,.s-pago{background:var(--green-soft);color:#16734e}.s-cancelado,.s-atrasado{background:var(--red-soft);color:#ae303b}.s-parcial{background:#f0eaff;color:#6843b5}.actions{display:flex;gap:3px}.action{border:0;background:transparent;color:var(--primary);font-weight:700;font-size:11px;padding:5px}.action.delete{color:var(--red)}.empty{text-align:center;color:var(--muted);padding:30px 10px;font-size:13px}.section{display:none}.section.active{display:block}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:11px;font-weight:750;color:#536078}.field input,.field select,.field textarea{width:100%}.field textarea{resize:vertical}.field.full{grid-column:1/-1}.modal-back{position:fixed;inset:0;background:#10192a88;display:none;align-items:center;justify-content:center;padding:16px;z-index:10}.modal-back.open{display:flex}.modal{background:#fff;border-radius:16px;padding:22px;width:min(680px,100%);max-height:92vh;overflow:auto;box-shadow:0 20px 60px #10192a40}.modal h2{margin:0 0 5px;font-size:19px}.modal .subtext{margin-bottom:18px}.modal-actions{display:flex;justify-content:space-between;gap:9px;margin-top:20px}.modal-actions-right{display:flex;gap:8px}.notice{font-size:11px;color:var(--muted);line-height:1.55;margin-top:13px}.notice-box{padding:12px 13px;border-radius:10px;background:#f4f6fb;color:#59667b;font-size:11px;line-height:1.5;margin-top:13px}.toolbar-end{display:flex;gap:8px;margin-left:auto}.pill{background:#f1f3f8;padding:5px 8px;border-radius:7px;font-size:11px;color:#536078}.progress{height:7px;background:#edf0f5;border-radius:20px;overflow:hidden;margin-top:8px}.progress span{display:block;height:100%;background:var(--primary);border-radius:20px}.hidden{display:none!important}
+@media(max-width:1000px){.sidebar{width:215px}.cards{grid-template-columns:repeat(2,1fr)}.grid-main{grid-template-columns:1fr}main{padding:22px}}
+@media(max-width:650px){.app{display:block}.sidebar{width:100%;padding:13px}.brand{padding:2px 8px 10px}.nav{display:flex;overflow:auto}.nav-label,.side-bottom{display:none}.nav button{white-space:nowrap;width:auto;padding:9px 11px;font-size:12px}.nav .ico{display:none}main{padding:17px 12px}.topbar{align-items:flex-start;flex-direction:column}.topbar h1{font-size:23px}.cards{gap:9px}.stat{padding:13px}.stat strong{font-size:20px}.stat-top{font-size:10px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.panel{padding:14px}.top-actions{width:100%}.date-label{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand">orbe<span>.</span></div>
+  <div class="nav-label">Workspace</div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard"><span class="ico">▦</span>Visão geral</button>
+    <button data-page="orders"><span class="ico">▤</span>Pedidos</button>
+    <button data-page="clients"><span class="ico">♙</span>Clientes e negócios</button>
+    <button data-page="invoices"><span class="ico">▧</span>Notas fiscais</button>
+    <button data-page="finance"><span class="ico">R$</span>Financeiro</button>
+  </nav>
+  <div class="side-bottom"><strong>ORBE • GESTÃO</strong>Seus registros organizados em um só lugar.</div>
+</aside>
+<main>
+<header class="topbar">
+  <div><div class="eyebrow">GESTÃO EMPRESARIAL</div><h1 id="pageTitle">Visão geral</h1></div>
+  <div class="top-actions"><span class="date-label" id="today"></span><button class="btn" id="exportBackup">↓ Backup</button><button class="btn primary" id="quickAdd">＋ Novo pedido</button></div>
+</header>
+
+<section class="section active" id="dashboard">
+  <div class="cards">
+    <div class="stat"><div class="stat-top">Pedidos no período <span class="stat-icon">▤</span></div><strong id="statOrders">0</strong><small id="ordersCaption">Total de pedidos cadastrados</small></div>
+    <div class="stat"><div class="stat-top">Clientes e negócios <span class="stat-icon">♙</span></div><strong id="statClients">0</strong><small>Cadastros registrados</small></div>
+    <div class="stat"><div class="stat-top">A receber <span class="stat-icon">↗</span></div><strong id="statReceivable">R$ 0,00</strong><small>Notas pendentes ou parciais</small></div>
+    <div class="stat"><div class="stat-top">Vendido em pedidos <span class="stat-icon">R$</span></div><strong id="statSales">R$ 0,00</strong><small>Valor total dos pedidos não cancelados</small></div>
+  </div>
+  <div class="grid-main">
+    <div class="panel"><div class="panel-head"><div><h2>Pedidos recentes</h2><div class="subtext">Acompanhe os últimos lançamentos</div></div><button class="action" data-goto="orders">Ver pedidos →</button></div><div id="recentOrders" class="quick-list"></div></div>
+    <div class="panel"><div class="panel-head"><div><h2>Resumo operacional</h2><div class="subtext">Situação atual dos registros</div></div></div>
+      <div class="metric-line"><span>Pedidos pendentes</span><strong id="pendingCount">0</strong></div>
+      <div class="metric-line"><span>Em andamento</span><strong id="progressCount">0</strong></div>
+      <div class="metric-line"><span>Concluídos</span><strong id="doneCount">0</strong></div>
+      <div class="metric-line"><span>Notas em aberto</span><strong id="openInvoices">0</strong></div>
+      <div class="notice-box">Dica: mantenha o status dos pedidos e das notas atualizado para que os indicadores reflitam a operação.</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="orders"><div class="panel">
+  <div class="panel-head"><div><h2>Pedidos</h2><div class="subtext">Cadastre, acompanhe e atualize cada pedido.</div></div><button class="btn primary" data-add="order">＋ Novo pedido</button></div>
+  <div class="toolbar"><input id="searchOrders" placeholder="Buscar pedido, cliente ou descrição..."><select id="filterOrders"><option value="">Todos os status</option><option>Pendente</option><option>Em andamento</option><option>Concluído</option><option>Cancelado</option></select><button class="btn" id="ordersCsv">Exportar CSV</button></div>
+  <div class="table-wrap"><table><thead><tr><th>PEDIDO</th><th>CLIENTE</th><th>DATA</th><th>ENTREGA</th><th>VALOR</th><th>STATUS</th><th>AÇÕES</th></tr></thead><tbody id="ordersBody"></tbody></table></div>
+</div></section>
+
+<section class="section" id="clients"><div class="panel">
+  <div class="panel-head"><div><h2>Clientes e negócios</h2><div class="subtext">Centralize os dados de contato e relacionamento.</div></div><button class="btn primary" data-add="client">＋ Novo cliente</button></div>
+  <div class="toolbar"><input id="searchClients" placeholder="Buscar por nome, contato, documento ou e-mail..."><button class="btn" id="clientsCsv">Exportar CSV</button></div>
+  <div class="table-wrap"><table><thead><tr><th>CLIENTE / EMPRESA</th><th>CONTATO</th><th>E-MAIL</th><th>TELEFONE</th><th>DOCUMENTO</th><th>AÇÕES</th></tr></thead><tbody id="clientsBody"></tbody></table></div>
+</div></section>
+
+<section class="section" id="invoices"><div class="panel">
+  <div class="panel-head"><div><h2>Notas fiscais</h2><div class="subtext">Registre documentos e acompanhe pagamentos.</div></div><button class="btn primary" data-add="invoice">＋ Lançar nota</button></div>
+  <div class="toolbar"><input id="searchInvoices" placeholder="Buscar número, empresa ou pedido..."><select id="filterInvoices"><option value="">Todos os status</option><option>Pendente</option><option>Parcial</option><option>Pago</option></select><button class="btn" id="invoicesCsv">Exportar CSV</button></div>
+  <div class="table-wrap"><table><thead><tr><th>Nº NOTA</th><th>EMITENTE / CLIENTE</th><th>PEDIDO</th><th>EMISSÃO</th><th>VENCIMENTO</th><th>VALOR</th><th>STATUS</th><th>AÇÕES</th></tr></thead><tbody id="invoicesBody"></tbody></table></div>
+  <p class="notice">Este módulo registra e acompanha notas já emitidas. Não emite NF-e/NFS-e nem substitui um sistema fiscal autorizado.</p>
+</div></section>
+
+<section class="section" id="finance"><div class="cards">
+  <div class="stat"><div class="stat-top">Total lançado em notas <span class="stat-icon">▧</span></div><strong id="finTotal">R$ 0,00</strong><small>Notas registradas</small></div>
+  <div class="stat"><div class="stat-top">Total recebido <span class="stat-icon">✓</span></div><strong id="finPaid">R$ 0,00</strong><small>Notas marcadas como pagas</small></div>
+  <div class="stat"><div class="stat-top">Em aberto <span class="stat-icon">◷</span></div><strong id="finOpen">R$ 0,00</strong><small>Valores ainda não recebidos</small></div>
+  <div class="stat"><div class="stat-top">Vencidas <span class="stat-icon">!</span></div><strong id="finLate">R$ 0,00</strong><small>Notas pendentes vencidas</small></div>
+  </div>
+  <div class="panel"><div class="panel-head"><div><h2>Contas a receber</h2><div class="subtext">Valores calculados a partir das notas fiscais cadastradas.</div></div><button class="action" data-goto="invoices">Gerenciar notas →</button></div><div class="table-wrap"><table><thead><tr><th>NOTA</th><th>CLIENTE / EMPRESA</th><th>VENCIMENTO</th><th>VALOR</th><th>STATUS</th></tr></thead><tbody id="financeBody"></tbody></table></div></div>
+</section>
+
+<div class="panel"><div class="panel-head"><div><h2>Segurança dos dados</h2><div class="subtext">Faça cópias de segurança regularmente.</div></div><div class="toolbar-end"><button class="btn small" id="importBackup">↑ Restaurar backup</button><button class="btn small danger" id="clearData">Limpar dados</button><input type="file" id="backupFile" accept="application/json,.json" class="hidden"></div></div><p class="notice">Os dados ficam salvos neste navegador e neste dispositivo. O backup permite transferir ou recuperar os registros. Para uso por várias pessoas ou em computadores diferentes, será necessário conectar o sistema a um banco de dados online com autenticação.</p></div>
+</main>
+</div>
+
+<div class="modal-back" id="modalBack"><div class="modal">
+  <h2 id="modalTitle">Novo registro</h2><div class="subtext" id="modalSubtitle">Preencha os dados abaixo.</div>
+  <form id="recordForm"><div id="formFields" class="form-grid"></div>
+    <div class="modal-actions"><span class="muted" style="font-size:11px;align-self:center">* Campos obrigatórios</span><div class="modal-actions-right"><button type="button" class="btn" id="cancelModal">Cancelar</button><button class="btn primary" type="submit">Salvar</button></div></div>
+  </form>
+</div></div>
+<script>
+const $=s=>document.querySelector(s);
+const money=n=>Number(n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const localDate=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+const fmtDate=s=>s?new Date(s+'T12:00:00').toLocaleDateString('pt-BR'):'—';
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const defaults={orders:[],clients:[],invoices:[]};
+function loadData(){try{const d=JSON.parse(localStorage.getItem('orbeData')||localStorage.getItem('gestorData')||'{}');return {orders:Array.isArray(d.orders)?d.orders:[],clients:Array.isArray(d.clients)?d.clients:[],invoices:Array.isArray(d.invoices)?d.invoices:[]}}catch{return structuredClone(defaults)}}
+let data=loadData(),currentType='',editingId=null;
+const save=()=>{localStorage.setItem('orbeData',JSON.stringify(data));render()};
+const makeId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+$('#today').textContent=new Date().toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'short',year:'numeric'});
+const fields={
+ order:[['number','Número do pedido','text',1],['client','Cliente / negócio','client',1],['date','Data do pedido','date',1],['delivery','Previsão de entrega','date',0],['value','Valor total (R$)','number',1],['status','Status','select',['Pendente','Em andamento','Concluído','Cancelado']],['description','Descrição / itens do pedido','textarea',0],['notes','Observações internas','textarea',0]],
+ client:[['name','Nome do cliente / empresa','text',1],['contact','Pessoa de contato','text',0],['email','E-mail','email',0],['phone','Telefone','tel',0],['document','CPF / CNPJ','text',0],['address','Endereço','text',0],['notes','Observações','textarea',0]],
+ invoice:[['number','Número da nota','text',1],['company','Emitente / cliente','client',1],['orderId','Pedido relacionado','order',0],['date','Data de emissão','date',1],['dueDate','Data de vencimento','date',0],['value','Valor da nota (R$)','number',1],['paidValue','Valor recebido (R$)','number',0],['status','Status','select',['Pendente','Parcial','Pago']],['description','Descrição / referência','textarea',0]]
+};
+function inputFor(f,record){let [key,label,kind,extra]=f,val=record?.[key]??(kind==='date'?localDate():kind==='number'?'':kind==='select'?'Pendente':'');let required=extra===1?'required':'';if(kind==='select')return `<select name="${key}" ${required}>${extra.map(x=>`<option ${val===x?'selected':''}>${x}</option>`).join('')}</select>`;if(kind==='textarea')return `<textarea name="${key}" rows="3" ${required}>${esc(val)}</textarea>`;if(kind==='client'){let opts=data.clients.map(c=>`<option value="${esc(c.name)}" ${val===c.name?'selected':''}>${esc(c.name)}</option>`).join('');return `<input name="${key}" list="clientOptions" value="${esc(val)}" ${required} placeholder="Digite ou selecione um cliente"><datalist id="clientOptions">${opts}</datalist>`}if(kind==='order'){let opts=data.orders.map(o=>`<option value="${esc(o.number)}" ${val===o.number?'selected':''}>${esc(o.number)} — ${esc(o.client)}</option>`).join('');return `<input name="${key}" list="orderOptions" value="${esc(val)}" placeholder="Opcional"><datalist id="orderOptions">${opts}</datalist>`}return `<input name="${key}" type="${kind}" ${required} value="${esc(val)}" ${kind==='number'?'min="0" step="0.01"':''}>`}
+function openModal(type,record=null){currentType=type;editingId=record?.id||null;const names={order:'pedido',client:'cliente / negócio',invoice:'nota fiscal'};$('#modalTitle').textContent=(record?'Editar ':'Novo ')+names[type];$('#modalSubtitle').textContent=type==='invoice'?'Registre os dados da nota e acompanhe o recebimento.':'Preencha os dados para manter seu controle atualizado.';$('#formFields').innerHTML=fields[type].map(f=>{let full=f[2]==='textarea';return `<div class="field ${full?'full':''}"><label>${f[1]}${f[3]===1?' *':''}</label>${inputFor(f,record)}</div>`}).join('');$('#modalBack').classList.add('open')}
+function closeModal(){$('#modalBack').classList.remove('open')}
+$('#cancelModal').onclick=closeModal;$('#modalBack').addEventListener('click',e=>{if(e.target.id==='modalBack')closeModal()});
+$('#recordForm').onsubmit=e=>{e.preventDefault();let obj=Object.fromEntries(new FormData(e.target).entries());if(['order','invoice'].includes(currentType)){obj.value=Number(obj.value||0);if(currentType==='invoice')obj.paidValue=Number(obj.paidValue||0)}obj.id=editingId||makeId();let key=currentType==='order'?'orders':currentType==='client'?'clients':'invoices';let idx=data[key].findIndex(x=>x.id===obj.id);if(idx>=0)data[key][idx]=obj;else data[key].unshift(obj);save();closeModal()};
+function status(s){let cls=s==='Concluído'||s==='Pago'?'s-concluido':s==='Em andamento'?'s-andamento':s==='Cancelado'?'s-cancelado':s==='Parcial'?'s-parcial':'s-pendente';return `<span class="status ${cls}">${esc(s||'Pendente')}</span>`}
+function actions(type,item){return `<div class="actions"><button class="action" data-edit="${type}" data-id="${item.id}">Editar</button><button class="action delete" data-delete="${type}" data-id="${item.id}">Excluir</button></div>`}
+function late(inv){return inv.status!=='Pago'&&inv.dueDate&&inv.dueDate<localDate()}
+function render(){
+ const {orders,clients,invoices}=data;
+ const activeOrders=orders.filter(o=>o.status!=='Cancelado');
+ const totalSales=activeOrders.reduce((a,o)=>a+Number(o.value||0),0);
+ const open=invoices.reduce((a,i)=>a+Math.max(0,Number(i.value||0)-Number(i.paidValue||0)),0);
+ $('#statOrders').textContent=orders.length;$('#statClients').textContent=clients.length;$('#statReceivable').textContent=money(open);$('#statSales').textContent=money(totalSales);
+ $('#pendingCount').textContent=orders.filter(o=>o.status==='Pendente').length;$('#progressCount').textContent=orders.filter(o=>o.status==='Em andamento').length;$('#doneCount').textContent=orders.filter(o=>o.status==='Concluído').length;$('#openInvoices').textContent=invoices.filter(i=>i.status!=='Pago').length;
+ $('#recentOrders').innerHTML=orders.slice(0,6).map(o=>`<div class="quick-item"><div><strong>${esc(o.number)}</strong><small>${esc(o.client)} · ${fmtDate(o.date)}</small></div><div class="right">${status(o.status)}<small>${money(o.value)}</small></div></div>`).join('')||'<div class="empty">Nenhum pedido cadastrado. Use “Novo pedido” para começar.</div>';
+ const oq=$('#searchOrders').value.toLowerCase(),of=$('#filterOrders').value;
+ $('#ordersBody').innerHTML=orders.filter(o=>`${o.number} ${o.client} ${o.description}`.toLowerCase().includes(oq)&&(!of||o.status===of)).map(o=>`<tr><td><strong>${esc(o.number)}</strong></td><td>${esc(o.client)}</td><td>${fmtDate(o.date)}</td><td>${fmtDate(o.delivery)}</td><td>${money(o.value)}</td><td>${status(o.status)}</td><td>${actions('order',o)}</td></tr>`).join('')||'<tr><td colspan="7" class="empty">Nenhum pedido encontrado.</td></tr>';
+ const cq=$('#searchClients').value.toLowerCase();
+ $('#clientsBody').innerHTML=clients.filter(c=>`${c.name} ${c.contact} ${c.email} ${c.document}`.toLowerCase().includes(cq)).map(c=>`<tr><td><strong>${esc(c.name)}</strong></td><td>${esc(c.contact)}</td><td>${esc(c.email)}</td><td>${esc(c.phone)}</td><td>${esc(c.document)}</td><td>${actions('client',c)}</td></tr>`).join('')||'<tr><td colspan="6" class="empty">Nenhum cliente cadastrado.</td></tr>';
+ const iq=$('#searchInvoices').value.toLowerCase(),inf=$('#filterInvoices').value;
+ $('#invoicesBody').innerHTML=invoices.filter(i=>`${i.number} ${i.company} ${i.orderId}`.toLowerCase().includes(iq)&&(!inf||i.status===inf)).map(i=>`<tr><td><strong>${esc(i.number)}</strong></td><td>${esc(i.company)}</td><td>${esc(i.orderId||'—')}</td><td>${fmtDate(i.date)}</td><td>${fmtDate(i.dueDate)}</td><td>${money(i.value)}</td><td>${late(i)?'<span class="status s-atrasado">Vencida</span>':status(i.status)}</td><td>${actions('invoice',i)}</td></tr>`).join('')||'<tr><td colspan="8" class="empty">Nenhuma nota encontrada.</td></tr>';
+ const total=invoices.reduce((a,i)=>a+Number(i.value||0),0),paid=invoices.reduce((a,i)=>a+Math.min(Number(i.value||0),Number(i.paidValue||0)),0),lateTotal=invoices.filter(late).reduce((a,i)=>a+Math.max(0,Number(i.value||0)-Number(i.paidValue||0)),0);
+ $('#finTotal').textContent=money(total);$('#finPaid').textContent=money(paid);$('#finOpen').textContent=money(Math.max(0,total-paid));$('#finLate').textContent=money(lateTotal);
+ $('#financeBody').innerHTML=invoices.filter(i=>i.status!=='Pago').sort((a,b)=>(a.dueDate||'9999').localeCompare(b.dueDate||'9999')).map(i=>`<tr><td><strong>${esc(i.number)}</strong></td><td>${esc(i.company)}</td><td>${fmtDate(i.dueDate)}</td><td>${money(Math.max(0,Number(i.value||0)-Number(i.paidValue||0)))}</td><td>${late(i)?'<span class="status s-atrasado">Vencida</span>':status(i.status)}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">Não há valores em aberto.</td></tr>';
+}
+function go(page){document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===page));document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===page));$('#pageTitle').textContent=({dashboard:'Visão geral',orders:'Pedidos',clients:'Clientes e negócios',invoices:'Notas fiscais',finance:'Financeiro'})[page];$('#quickAdd').textContent=page==='clients'?'＋ Novo cliente':page==='invoices'?'＋ Lançar nota':'＋ Novo pedido';$('#quickAdd').onclick=()=>openModal(page==='clients'?'client':page==='invoices'?'invoice':'order')}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>go(b.dataset.goto));document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>openModal(b.dataset.add));
+document.addEventListener('click',e=>{let edit=e.target.closest('[data-edit]'),del=e.target.closest('[data-delete]');if(edit){let t=edit.dataset.edit,k=t==='order'?'orders':t==='client'?'clients':'invoices';openModal(t,data[k].find(x=>x.id===edit.dataset.id))}if(del){let t=del.dataset.delete,k=t==='order'?'orders':t==='client'?'clients':'invoices';if(confirm('Excluir este registro? Esta ação não pode ser desfeita.')){data[k]=data[k].filter(x=>x.id!==del.dataset.id);save()}}});
+['searchOrders','filterOrders','searchClients','searchInvoices','filterInvoices'].forEach(x=>$('#'+x).addEventListener('input',render));
+function download(name,content,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}
+function csv(rows){return '\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n')}
+$('#exportBackup').onclick=()=>download('orbe-backup-'+localDate()+'.json',JSON.stringify({version:2,exportedAt:new Date().toISOString(),data},null,2),'application/json');
+$('#importBackup').onclick=()=>$('#backupFile').click();
+$('#backupFile').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const raw=JSON.parse(await file.text()),d=raw.data||raw;if(!Array.isArray(d.orders)||!Array.isArray(d.clients)||!Array.isArray(d.invoices))throw Error();if(confirm('Restaurar este backup? Os dados atuais serão substituídos.')){data=d;save();alert('Backup restaurado com sucesso.')}}catch{alert('Não foi possível ler o backup. Selecione um arquivo JSON exportado por este sistema.')}e.target.value=''};
+$('#clearData').onclick=()=>{if(confirm('Tem certeza? Todos os pedidos, clientes e notas salvos neste navegador serão apagados. Faça um backup antes.')){data=structuredClone(defaults);save()}};
+$('#ordersCsv').onclick=()=>download('pedidos-'+localDate()+'.csv',csv([['Pedido','Cliente','Data','Entrega','Valor','Status','Descrição'],...data.orders.map(o=>[o.number,o.client,o.date,o.delivery,o.value,o.status,o.description])]),'text/csv;charset=utf-8');
+$('#clientsCsv').onclick=()=>download('clientes-'+localDate()+'.csv',csv([['Nome','Contato','Email','Telefone','Documento','Endereço'],...data.clients.map(c=>[c.name,c.contact,c.email,c.phone,c.document,c.address])]),'text/csv;charset=utf-8');
+$('#invoicesCsv').onclick=()=>download('notas-'+localDate()+'.csv',csv([['Nota','Empresa','Pedido','Emissão','Vencimento','Valor','Recebido','Status'],...data.invoices.map(i=>[i.number,i.company,i.orderId,i.date,i.dueDate,i.value,i.paidValue,i.status])]),'text/csv;charset=utf-8');
+render();
+</script>
+</body>
+</html>
